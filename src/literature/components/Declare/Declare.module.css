@@ -1,0 +1,13 @@
+.tabs {
+    justify-content: space-around;
+}
+
+.cardContainer {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.modal {
+    min-width: 60vw;
+}
