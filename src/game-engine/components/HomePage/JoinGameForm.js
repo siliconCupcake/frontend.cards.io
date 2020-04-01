@@ -1,8 +1,7 @@
 import React from 'react'
 import './HomePage.css'
 
-
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles'
 import {
 	Box,
 	Button,
@@ -11,55 +10,55 @@ import {
 	Grid,
 	TextField,
 	Typography
-} from '@material-ui/core';
+} from '@material-ui/core'
 
 const styles = (theme) => ({
-	root: {
-	},
+	root: {},
 	flexGrow: {
-		flexGrow: 1,
+		flexGrow: 1
 	},
 	textField: {
 		marginLeft: theme.spacing(1),
-		marginRight: theme.spacing(1),
+		marginRight: theme.spacing(1)
 	},
 	card: {
-		margin: theme.spacing(0.5),
+		margin: theme.spacing(0.8),
 		'& > *': {
 			padding: theme.spacing(1),
 			paddingBottom: 0,
-			"&:last-child": {
+			'&:last-child': {
 				paddingBottom: theme.spacing(1)
 			}
 		},
 		'&:hover': {
 			cursor: 'pointer'
-		},
+		}
 	},
 	centerChild: {
-		textAlign: "center"
+		textAlign: 'center'
 	},
 	joinListGrid: {
 		marginTop: theme.spacing(1),
 		marginLeft: 0
 	},
-	nameTabGrid: {
-	},
+	nameTabGrid: {},
 	nameTabCard: {
 		border: '3px solid',
 		borderRadius: '6px',
 		display: 'flex',
+		margin: theme.spacing(0.8),
+		color: 'black',
 		padding: theme.spacing(0),
 		'& > *': {
 			padding: theme.spacing(1),
 			paddingBottom: 0,
-			"&:last-child": {
+			'&:last-child': {
 				paddingBottom: theme.spacing(0)
 			}
-		},
+		}
 	},
 	chipNumberBox: {
-		color: "white",
+		color: 'white',
 		backgroundColor: theme.palette.secondary.main,
 		paddingLeft: theme.spacing(2),
 		paddingRight: theme.spacing(2)
@@ -67,26 +66,49 @@ const styles = (theme) => ({
 	cardContent: {
 		padding: theme.spacing(0),
 		paddingBottom: 0,
-		"&:last-child": {
+		'&:last-child': {
 			paddingBottom: theme.spacing(0)
-		},
+		}
 	},
 	joinBtnContainer: {
 		marginTop: theme.spacing(2)
+	},
+	cssLabel: {
+		color: 'black',
+		fontSize: '0.9rem'
+	},
+	cssOutlinedInput: {
+		'&$cssFocused $notchedOutline': {
+			borderWidth: '2px',
+			borderColor: `${theme.palette.secondary.main} !important`
+		}
+	},
+	cssFocused: {
+		fontSize: '1rem'
+	},
+	notchedOutline: {
+		borderWidth: '2px',
+		borderColor: 'black !important'
+	},
+	formButton: {
+		'&:focus': {
+			outline: 'none'
+		}
 	}
-});
+})
 
 const joinGameData = [
 	{ position: 1, name: 'Bharath' },
-	{ position: 2, name: 'Bharath' },
-	{ position: 3, name: 'Bharath' },
-	{ position: 4, name: 'Bharath' },
-	{ position: 5, name: 'Bharath' },
-	{ position: 6, name: 'Bharath' },
-];
+	{ position: 2, name: 'Nandha Kishore' },
+	{ position: 3, name: 'Naven' },
+	{ position: 4, name: 'Tejus' },
+	{ position: 5, name: 'Vivek' },
+	{ position: 6, name: 'Shohan' },
+	{ position: 7, name: '<Available>' },
+	{ position: 8, name: '<Available>' }
+]
 
 class JoinGamePage extends React.Component {
-
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -127,45 +149,72 @@ class JoinGamePage extends React.Component {
 			this.props.joinGame(this.state)
 	}
 	render() {
-
-		const { classes } = this.props;
+		const { classes } = this.props
 
 		return (
 			<>
-				<Grid container xs={12} xl={12} alignItems="center" >
-					<Grid item xs={2}>
-					</Grid>
+				<Grid container xs={12} xl={12} alignItems="center">
+					<Grid item xs={2}></Grid>
 					<Grid container item xs={7} justify="center">
 						<TextField
 							label="Game Code"
 							variant="outlined"
 							size="small"
-							fullWidth
+							InputLabelProps={{
+								classes: {
+									root: classes.cssLabel,
+									focused: classes.cssFocused
+								}
+							}}
+							InputProps={{
+								classes: {
+									root: classes.cssOutlinedInput,
+									focused: classes.cssFocused,
+									notchedOutline: classes.notchedOutline
+								},
+								inputMode: 'text'
+							}}
 							color="secondary"
 							className={classes.textField}
 						/>
 					</Grid>
 					<Grid item alignItems="center" xs={3} justify="center">
-						<Button size="small" variant="contained" color="secondary">
+						<Button
+							size="small"
+							variant="contained"
+							color="secondary"
+						>
 							Peek
 						</Button>
 					</Grid>
 				</Grid>
-				<Grid container xs={12} xl={12} className={classes.centerChild}>
-				</Grid>
-				<Grid container xs={12} xl={12} className={classes.joinListGrid}
-					spacing={2}
+				<Grid
+					container
+					xs={12}
+					xl={12}
+					className={classes.centerChild}
+				></Grid>
+				<Grid
+					container
+					xs={12}
+					xl={12}
+					className={classes.joinListGrid}
+					spacing={0}
 				>
 					{joinGameData.map((player) => (
 						<Grid item xs={6} className={classes.nameTabGrid}>
-							<Card className={classes.nameTabCard} alignItems="center"
+							<Card
+								className={classes.nameTabCard}
+								alignItems="center"
 								variant="outlined"
 							>
 								<Box className={classes.chipNumberBox}>
 									{player.position}
 								</Box>
 								<div className={classes.detail}>
-									<CardContent className={classes.cardContent}>
+									<CardContent
+										className={classes.cardContent}
+									>
 										<Typography
 											color="textSecondary"
 											component="div"
@@ -178,11 +227,20 @@ class JoinGamePage extends React.Component {
 							</Card>
 						</Grid>
 					))}
-					<Grid container xs={12} sm={12} xl={12}
+					<Grid
+						container
+						xs={12}
+						sm={12}
+						xl={12}
 						justify="center"
 						className={classes.joinBtnContainer}
 					>
-						<Button size="small" variant="contained" color="secondary">
+						<Button
+							className={classes.formButton}
+							size="small"
+							variant="contained"
+							color="secondary"
+						>
 							Join
 						</Button>
 					</Grid>
