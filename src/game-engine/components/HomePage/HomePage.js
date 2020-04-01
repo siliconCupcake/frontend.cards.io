@@ -25,23 +25,6 @@ const styles = (theme) => ({
 		marginLeft: theme.spacing(1),
 		marginRight: theme.spacing(1),
 	},
-	card: {
-		margin: theme.spacing(0.5),
-		'& > *': {
-			padding: theme.spacing(1),
-			paddingBottom: 0,
-			"&:last-child": {
-				paddingBottom: theme.spacing(1)
-			}
-		},
-		'&:hover': {
-			cursor: 'pointer'
-		},
-	},
-	chip: {
-		marginLeft: theme.spacing(0.5),
-		marginRight: theme.spacing(0.5),
-	},
 	titleContainer: {
 		textAlign: "center",
 		marginTop: theme.spacing(1),
@@ -52,18 +35,17 @@ const styles = (theme) => ({
 	paper: {
 		boxShadow: theme.shadows[9]
 	},
-	centerChild: {
-		textAlign: "center"
-	},
 	mainContainer: {
 	},
 	mainGrid: {
 		marginTop: theme.spacing(2)
 	},
 	mainPaper: {
-		marginTop: theme.spacing(11),
-		minHeight: "70vh",
+		marginTop: theme.spacing(19),
+		//minHeight: "70vh",
 		backgroundColor: "#fff",
+		//backgroundColor: "rgba(255,255,255,0.4)",
+		//filter: "blur(4px)",
 	},
 	paperGridContainer: {
 		padding: theme.spacing(2),
@@ -75,46 +57,7 @@ const styles = (theme) => ({
 	sectionGrid: {
 		padding: theme.spacing(2),
 	},
-	itemGrid: {
-	},
-	joinListGrid: {
-		marginTop: theme.spacing(1),
-		marginLeft: 0
-	},
-	nameTabGrid: {
-	},
-	nameTabCard: {
-		display: 'flex',
-		padding: theme.spacing(0),
-		'& > *': {
-			padding: theme.spacing(1),
-			paddingBottom: 0,
-			"&:last-child": {
-				paddingBottom: theme.spacing(0.5)
-			}
-		},
-	},
-	chipNumberBox: {
-		color: "white",
-		backgroundColor: theme.palette.secondary.main,
-		paddingLeft: theme.spacing(2),
-		paddingRight: theme.spacing(2)
-	},
-	cardContent: {
-		padding: theme.spacing(0),
-		paddingBottom: 0,
-		"&:last-child": {
-			paddingBottom: theme.spacing(0)
-		},
-	},
-	cover: {
-		width: "20%",
-	},
-	details: {
-		display: 'flex',
-		flexDirection: 'column',
-	},
-	joinBtnContainer: {
+	nameInputContainer: {
 		marginTop: theme.spacing(2)
 	}
 });
@@ -178,7 +121,7 @@ class HomePage extends React.Component {
 								<Grid item xs={2} sm={4} xl={4}></Grid>
 								<Grid item xs={8} sm={4} xl={4}
 									justify="center"
-									className={classes.joinBtnContainer}
+									className={classes.nameInputContainer}
 								>
 									<TextField
 										label="Enter your name"
@@ -191,13 +134,13 @@ class HomePage extends React.Component {
 								</Grid>
 								<Grid item xs={2} sm={4} xl={4}></Grid>
 							</Grid>
-							<Grid container xs={6} className={classes.sectionGrid} spacing={1}>
+							<Grid container xs={12} sm={6} className={classes.sectionGrid} spacing={1}>
 								<CreateGameForm
 									createGame={this.handleCreateGameFormSubmit}
 									locked={locked}
 								/>
 							</Grid>
-							<Grid container xs={6} className={classes.sectionGrid}>
+							<Grid container xs={12} sm={6} className={classes.sectionGrid}>
 								<JoinGameForm
 									joinGame={this.handleJoinGameFormSubmit}
 									probeGameRequest={this.props.probeGameRequest}
