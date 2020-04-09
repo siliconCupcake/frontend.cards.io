@@ -7,6 +7,7 @@ export class GameRenderer {
 		this.cardsScale = null
 		this.otherContainer = null
 		this.playerContainer = null
+		this.rootContainer = null
 
 		this.app = new PIXI.Application({
 			autoDensity: true,
@@ -53,17 +54,7 @@ export class GameRenderer {
 	}
 
 	initBaseContainers = () => {
-		let rootContainer = this.app.stage
-
-		this.otherContainer = new PIXI.Container({
-			interactive: false
-		})
-		this.playerContainer = new PIXI.Container({
-			interactive: true
-		})
-
-		rootContainer.addChild(this.otherContainer)
-		rootContainer.addChild(this.playerContainer)
+		this.rootContainer = this.app.stage
 	}
 
 	initRenderer = () => {

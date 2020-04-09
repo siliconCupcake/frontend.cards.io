@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import * as PIXI from 'pixi.js'
 
 import Hand from '../Hand/Hand'
 
 import './GameView.css'
-
-let otherHands = []
-let playerHands = []
 
 const binom = (n, k) => {
 	var coeff = 1
@@ -79,6 +77,16 @@ const GameView = (props) => {
 		)
 	)
 
+	var otherContainer = new PIXI.Container({
+		interactive: false
+	})
+	var playerContainer = new PIXI.Container({
+		interactive: true
+	})
+
+	renderer.rootContainer.addChild(otherContainer)
+	renderer.rootContainer.addChild(playerContainer)
+
 	useEffect(() => {
 		setCoordinates(
 			findHandCoordinates(
@@ -89,20 +97,13 @@ const GameView = (props) => {
 				others.length
 			)
 		)
-
-		otherHands.forEach((item) => {
-			renderer.otherContainer.addChild(item)
-		})
-		playerHands.forEach((item) => {
-			renderer.playerContainer.addChild(item)
-		})
 	}, [renderer, others])
 
 	return (
 		<>
 			{others.map((player, index) => (
 				<Hand
-					parent={otherHands}
+					parent={otherContainer}
 					count={player.count}
 					key={index}
 					scale={renderer.cardsScale}
@@ -114,7 +115,7 @@ const GameView = (props) => {
 				/>
 			))}
 			<Hand
-				parent={playerHands}
+				parent={playerContainer}
 				scale={0.8}
 				x={renderer.app.screen.width / 2}
 				y={renderer.app.screen.height}
